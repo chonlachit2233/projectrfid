@@ -18,6 +18,8 @@
           <!--end::Brand Link-->
         </div>
         <!--end::Sidebar Brand-->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
           <nav class="mt-2">
@@ -41,38 +43,38 @@
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="edit-user.php" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <i class='bx bx-user-pin' ></i>
                       <p>จัดการผู้ใช้งาน</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="edit-plect.php" class="nav-link ">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <i class='bx bxs-building-house' ></i>
                       <p>จัดการสถานที่กิจกรรม</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="edit-activity.php" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <i class='bx bxs-landscape'></i>
                       <p>จัดการกิจกรรม</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="trainner.php" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <i class='bx bx-male-female' ></i>
                       <p>ผู้อบรม</p>
                     </a>
                   </li>
              
                   <li class="nav-item">
                     <a href="edit-admin.php" class="nav-link active">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <i class='bx bxs-contact'></i>
                       <p>จัดการAdmin</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="chackin.php" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
+                    <i class='bx bxs-home-circle'></i>
                       <p>ออกจากระบบ</p>
                     </a>
                   </li>
@@ -81,5 +83,6 @@
               
           </nav>
         </div>
+       
         <!--end::Sidebar Wrapper-->
       </aside>
