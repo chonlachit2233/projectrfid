@@ -41,6 +41,14 @@
                 </a>
                 
                 <ul class="nav nav-treeview">
+                </li>
+             
+             <li class="nav-item">
+               <a href="edit-admin.php" class="nav-link active">
+               <i class='bx bxs-contact'></i>
+                 <p>จัดการAdmin</p>
+               </a>
+             </li>
                 <li class="nav-item">
                     <a href="edit-user.php" class="nav-link">
                     <i class='bx bx-user-pin' ></i>
@@ -64,14 +72,7 @@
                     <i class='bx bx-male-female' ></i>
                       <p>ผู้อบรม</p>
                     </a>
-                  </li>
-             
-                  <li class="nav-item">
-                    <a href="edit-admin.php" class="nav-link active">
-                    <i class='bx bxs-contact'></i>
-                      <p>จัดการAdmin</p>
-                    </a>
-                  </li>
+                 
                   <li class="nav-item">
                     <a href="chackin.php" class="nav-link">
                     <i class='bx bxs-home-circle'></i>

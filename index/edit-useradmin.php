@@ -3,14 +3,12 @@ include("../include/db.php");
 error_reporting(0);
 ?>
 
-
-
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>จัดการAdmin</title> 
+    <title>จัดการAdmin</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -25,7 +23,6 @@ error_reporting(0);
     />
     <!--end::Primary Meta Tags-->
     <!--begin::Fonts-->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
@@ -108,58 +105,59 @@ error_reporting(0);
             <!--begin::Row-->
             <div class="row">
             <div class="col-md-12">
-            <div class="card mb-4">
-              <div class="card-header"><h3 class="card-title">รายชื่อ Admin</h3></div>
+                <div class="card mb-4">
+                  <div class="card-header"><h3 class="card-title">แก้ไข Admin</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                  <a href="editadd_admin.php" class="btn btn-info">เพิ่ม</a>
-                  
-                  <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">id</th>
-                          <th>fullname</th>
-                          <th>username</th>
-                          <th>email</th>
-                          <th>mobile</th>
-                          <th>password</th>
+
+                  <form action="admin-edit-api.php" method="post" >
+                    <?php $editid = $_GET['admin_id'];
+                    $sql = "SELECT * FROM admin WHERE admin_id=:eid";
+                    $query = $pdo->prepare($sql);
+                    $query->bindParam(':eid',$editid,PDO::PARAM_STR);
+                    $query->execute();
+                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+
+                    if($query->rowCount() >0){
+                       foreach($results as $row ){
                        
-                          <th style="">แก้ไข/ลบ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        //เชื่อมต่อกับ database
-                            $ret="select * from admin";
-                            $query = $pdo ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnc = 1;
- 
-                            if($query->rowCount() >0) {
-                                foreach($results as $row) {
-                        ?>
-                                    <tr class="align-middle">
-                                    <td><?php echo $row->admin_id;?></td>
-                                    <td><?php echo $row->full_name;?></td>
-                                    <td><?php echo $row->username;?></td>
-                                    <td><?php echo $row->email;?></td>
-                                    <td><?php echo $row->mobile;?></td>
-                                    <td><?php echo $row->password;?></td>
-                                    <td>
-                                    <a href="edit-useradmin.php?admin_id=<?php echo $row->admin_id; ?>" class="btn btn-warning">แก้ไข</a> 
-                                    <a href="delete-admin.php?admin_id=<?php echo $row->admin_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');">ลบ</a>
-                                  </td>
-                                    </tr>
-<?php                               $cnt=$cnt+1;
-                               }  
-                            }    
-                        ?>
- 
-                          </tr>
-                      </tbody>
-                    </table>
+                      
+                    ?>
+                    <input type="hidden" name="admin_id" id="admin_id" value="<?php echo $editid;?>">
+
+               
+                    
+                <div class="form-group">
+                <label for="fullname">FullName:</label>
+                <input type="text" class="form-control" id="full_name" placeholder="Enter FullName" name="full_name" required value="<?php echo $row->full_name; ?>">
+                </div>
+                <div class="form-group">
+                <label for="username">UserName:</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter UserName" name="username" required value="<?php echo $row->username; ?>">
+                </div>
+                <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required value="<?php echo $row->email; ?>">
+                </div>
+                <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" maxlength="10" pattern="[0-9]{10}" title="ตัวเลขสิบหลักเท่านั้น" class="form-control" id="mobile" placeholder="Enter Mobile" name="mobile" required value="<?php echo $row->mobile; ?>">
+                </div>
+                <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required value="<?php echo $row->password; ?>">
+                </div>
+        
+        <button type="submit" class="btn btn-success" name="update" id="update">Update</button>
+            </form>
+            <?php
+                    }
+              }   
+                    ?>
                   </div>
+
+
+                  
                   <!-- /.card-body -->
                   <div class="card-footer clearfix">
                     <ul class="pagination pagination-sm m-0 float-end">

@@ -13,7 +13,7 @@ $password = $_POST['password'];
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$quley = $dbh->prepare("INSERT INTO admin (full_name, username, email, mobile, password) 
+$quley = $pdo->prepare("INSERT INTO admin (full_name, username, email, mobile, password) 
                         VALUES (:full_name, :username, :email, :mobile, :password)");
 
 $quley->bindParam(':full_name', $fullname, PDO::PARAM_STR);
@@ -53,5 +53,5 @@ if ($quley) {
     </script>';
 }
 
-$dbh = null; // ปิดการเชื่อมต่อฐานข้อมูล
+$pdo = null; // ปิดการเชื่อมต่อฐานข้อมูล
 ?>

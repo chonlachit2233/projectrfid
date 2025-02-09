@@ -10,7 +10,7 @@ if(isset($_POST['login'])){
     try {
         // ดึงข้อมูลผู้ใช้จากฐานข้อมูล
         $ret = "SELECT * FROM admin WHERE username=:uname";
-        $queryt = $dbh->prepare($ret);
+        $queryt = $pdo->prepare($ret);
         $queryt->bindParam(':uname', $username, PDO::PARAM_STR);
         $queryt->execute();
         $result = $queryt->fetch(PDO::FETCH_OBJ);
