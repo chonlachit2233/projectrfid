@@ -3,8 +3,6 @@ include("../include/db.php");
 error_reporting(0);
 ?>
 
-
-
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
@@ -76,11 +74,10 @@ error_reporting(0);
       <!--end::Header-->
       <!--begin::Sidebar-->
      <?php include("../admin/include/sidebar.php");?>
-     
       <!--end::Sidebar-->
+      <!--begin::App Main-->
       <?php include("../admin/include/footer.php");?>
       <!--end::Footer-->
-      <!--begin::App Main-->
       <main class="app-main">
         <!--begin::App Content Header-->
         <div class="app-content-header">
@@ -88,7 +85,7 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">เเสดงตารางจัดการผู้ใช้งาน</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">Admin</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -108,73 +105,73 @@ error_reporting(0);
             <!--begin::Row-->
             <div class="row">
             <div class="col-md-12">
-            <div class="card mb-4">
-              <div class="card-header"><h3 class="card-title">รายชื่อ ผู้ใช้งาน</h3></div>
+                <div class="card mb-4">
+                  <div class="card-header"><h3 class="card-title">แก้ไข user</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                  <a href="add_user.php" class="btn btn-info">เพิ่ม</a>
-                  
-                  <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">id</th>
-                          <th>ชื่อ</th>
-                          <th>นามสกุล</th>
-                          <th>เพศ</th>
-                          <th>โรงเรียน</th>
-                          <th>หน่วยงาน</th>
-                          <th>ระดับชั้น</th>
-                          <th>หมายเลข_Tag</th>
-                          <th>กิจกรรม</th>
-                          </th>
-                        
 
-                          <th style="">แก้ไข/ลบ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        //เชื่อมต่อกับ database
-                            $ret="select * from users";
-                            $query = $pdo ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnc = 1;
- 
-                            if($query->rowCount() >0) {
-                                foreach($results as $row) {
-                        ?>
-                                    <tr class="align-middle">
-                                    <td><?php echo $row->id;?></td>
-                                    <td><?php echo $row->first_name;?></td>
-                                    <td><?php echo $row->last_name;?></td>
-                                    <td><?php echo $row->gender;?></td>
-                                    <td><?php echo $row->school;?></td>
-                                    <td><?php echo $row->organization;?></td>
-                                    <td><?php echo $row->grade;?></td>
-                                    <td><?php echo $row->tag_rfid;?></td>
-                                    <td><?php echo $row->activities;?></td>
-                                    <td>
-                                    <a href="user_edit.php?id=<?php echo $row->id; ?>" class="btn btn-warning">แก้ไข</a> 
-                                    <a href="delete-user.php?id=<?php echo $row->id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');">ลบ</a>
-                                  </td>
-                                    </tr>
-<?php                               $cnt=$cnt+1;
-                               }  
-                            }    
-                        ?>
- 
-                          </tr>
-                      </tbody>
-                    </table>
+                 
+                  <form action="add-user-api.php" method="post" >
+                <div class="form-group">
+                <label for="first_name">ชื่อ:</label>
+                <input type="text" class="form-control" id="first_name" placeholder="Enter first_name" name="first_name" required value="<?php echo $row->first_name; ?>">
+                </div>
+                <div class="form-group">
+                <label for="last_name">นามสกุล:</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Enter last_name" name="last_name" required value="<?php echo $row->last_name; ?>">
+                </div>
+                <div class="form-group">
+                <label for="gender">เพศ:</label>
+                <input type="text"  class="form-control" id="gender" placeholder="Enter gender" name="gender" required value="<?php echo $row->gender; ?>">
+                </div>
+                <div class="form-group">
+                <label for="organization">หน่วยงาน:</label>
+                <input type="text"  class="form-control" id="organization" placeholder="Enter organization" name="organization" required value="<?php echo $row->organization; ?>">
+                </div>
+                <div class="form-group">
+                <label for="school">โรงเรียน:</label>
+                <input type="text" class="form-control" id="school" placeholder="Enter school" name="school" required value="<?php echo $row->school; ?>">
+                </div>
+                <div class="form-group">
+                <label for="grade">ระดับชั้น:</label>
+                <input type="text" class="form-control" id="grade" placeholder="Enter grade" name="grade" required value="<?php echo $row->grade; ?>">
+                </div>
+                <div class="form-group">
+                <label for="tag_rfid">รหัส Tag_rfid:</label>
+                <input type="text" class="form-control" id="tag_rfid" placeholder="Enter tag_rfid" name="tag_rfid" required value="<?php echo $row->tag_rfid; ?>">
+                </div>
+                <div class="form-group">
+                <label for="activities">กิจกรรม:</label>
+                <input type="text" class="form-control" id="activities" placeholder="Enter activities" name="activities" required value="<?php echo $row->activities; ?>">
+                </div>
+        
+        <button type="submit" class="btn btn-success" name="save" id="save">Save</button>
+            </form>
+                  </div>
+
+
+                  
+                  <!-- /.card-body -->
+                  <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-end">
+                      <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                    </ul>
+                  </div>
+                </div>
+              <!--end::Col-->
             </div>
             <!--end::Row-->
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
              
-            
-          </div>
+              <!-- Start col -->
+               <!--เเผนที่-->
+           
           <!--end::Container-->
         </div>
         <!--end::App Content-->
