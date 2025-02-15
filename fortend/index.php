@@ -1,4 +1,3 @@
 <?php
-
-
+echo('morther fucker');
 ?>
