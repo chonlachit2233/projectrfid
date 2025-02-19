@@ -108,7 +108,7 @@ error_reporting(0);
               <div class="card-header"><h3 class="card-title">รายชื่อผู้เข้าร่วมอบรม</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                  <a href="editadd_admin.php" class="btn btn-info">เพิ่ม</a>
+                  <a href="editadd_admin.php" class="btn btn-info"><i class='bx bxs-user-plus bx-tada' style='color:#171717' ></i></a>
                   
                   <table class="table table-bordered">
                       <thead>
@@ -149,8 +149,8 @@ error_reporting(0);
                                     <td><?php echo $row->tag_rfid;?></td>
                                     <td><?php echo $row->activities;?></td>
                                     <td>
-                                    <a href="edit-admin.php?cat_id=<?php echo $row->cat_id; ?>" class="btn btn-warning">แก้ไข</a>
-                                    <a href="delete-category.php?cat_id=<?php echo $row->cat_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');">ลบ</a>
+                                    <a href="edit-admin.php?cat_id=<?php echo $row->cat_id; ?>" class="btn btn-warning"><i class='bx bxs-edit bx-tada' style='color:#171717' ></i></a>
+                                    <a href="delete-category.php?cat_id=<?php echo $row->cat_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');"><i class='bx bx-trash bx-tada' ></i></a>
                                   </td>
                                     </tr>
 <?php                               $cnt=$cnt+1;
