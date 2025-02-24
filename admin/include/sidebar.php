@@ -74,7 +74,7 @@
                     </a>
                  
                   <li class="nav-item">
-                    <a href="chackin.php" class="nav-link">
+                  <a href="logout.php" class="nav-link" onclick="return confirm('คุณต้องการออกจากระบบหรือไม่?');">
                     <i class='bx bxs-home-circle'></i>
                       <p>ออกจากระบบ</p>
                     </a>

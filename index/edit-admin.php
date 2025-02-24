@@ -125,6 +125,7 @@ error_reporting(0);
                           <th>email</th>
                           <th>mobile</th>
                           <th>password</th>
+                      
                        
                           <th style="">แก้ไข/ลบ</th>
                         </tr>
@@ -147,7 +148,7 @@ error_reporting(0);
                                     <td><?php echo $row->username;?></td>
                                     <td><?php echo $row->email;?></td>
                                     <td><?php echo $row->mobile;?></td>
-                                    <td><?php echo $row->password;?></td>
+                                    <td><?php echo str_repeat('*', strlen($row->password)); ?></td>
                                     <td>
                                     <a href="edit-useradmin.php?admin_id=<?php echo $row->admin_id; ?>" class="btn btn-warning"> <i class='bx bxs-edit bx-tada' style='color:#171717' ></i></a></i>
                                     <a href="delete-admin.php?admin_id=<?php echo $row->admin_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');"><i class='bx bx-trash bx-tada' ></i></a>
