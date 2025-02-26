@@ -46,3 +46,16 @@ button {
     font-size: 16px;
     text-align: center;
 }
+.form-group {
+    margin-bottom: 1rem; /* เว้นระยะระหว่างฟอร์ม */
+}
+
+.input-group-text {
+    background-color: #007bff; /* พื้นหลังของไอคอน */
+    color: white; /* สีของไอคอน */
+    border-radius: 5px 0 0 5px; /* ทำให้มีขอบโค้งเฉพาะด้านซ้าย */
+}
+
+.custom-select {
+    border-radius: 0 5px 5px 0; /* ทำให้มีขอบโค้งเฉพาะด้านขวา */
+}

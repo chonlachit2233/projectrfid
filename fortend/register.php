@@ -67,9 +67,14 @@ error_reporting(0);
                 <input type="text" class="form-control" id="last_name" placeholder="กรุณากรอกนามสกุล" name="last_name" required value="<?php echo $row->last_name; ?>">
                 </div>
                 <div class="form-group">
-                <label for="gender">เพศ:</label>
-                <input type="text"  class="form-control" id="gender" placeholder="Enter gender" name="gender" required value="<?php echo $row->gender; ?>">
+                 <label for="gender">เพศ:</label>
+                 <select class="form-control" id="gender" name="gender" required>
+                  <option value="">-- เลือกเพศ --</option>
+                 <option value="ชาย" <?php if ($row->gender == "ชาย") echo "selected"; ?>>ชาย</option>
+                  <option value="หญิง" <?php if ($row->gender == "หญิง") echo "selected"; ?>>หญิง</option>
+                </select>
                 </div>
+
                 <div class="form-group">
                 <label for="organization">หน่วยงาน:</label>
                 <input type="text"  class="form-control" id="organization" placeholder="กรุณากรอกหน่วยงาน" name="organization" required value="<?php echo $row->organization; ?>">
