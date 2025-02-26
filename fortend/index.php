@@ -15,7 +15,7 @@ error_reporting(0);
 <div class="container">
     <form id="register" action="register.php" method="POST">
         <button type="submit">ลงทะเบียน</button>
-        <button type="button" onclick="location.href='login.php'">ล็อกอิน</button> <!-- เพิ่มการเชื่อมโยงไปหน้า login.php -->
+        <button type="button" onclick="location.href='../index/login.php'">ล็อกอิน</button> <!-- เพิ่มการเชื่อมโยงไปหน้า login.php -->
     </form>
     <form id="box-form">
         <div class="box"></div>
