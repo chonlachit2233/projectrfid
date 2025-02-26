@@ -19,7 +19,7 @@ error_reporting(0);
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!--begin::App Wrapper-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/register.css">
     <div class="app-wrapper">
       <!--begin::Header-->
       
