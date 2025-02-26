@@ -1,5 +1,7 @@
 <?php
-// ใส่โค้ด PHP หากมีการเชื่อมต่อกับฐานข้อมูลหรือการดำเนินการอื่นๆ
+session_start();
+include("../include/db.php");
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
