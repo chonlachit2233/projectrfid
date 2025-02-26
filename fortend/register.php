@@ -11,6 +11,7 @@ error_reporting(0);
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>จัดการผู้ใช้งาน</title>
+    <link rel="stylesheet" href="fonend/register.css">
     <!--begin::Primary Meta Tags-->
     
  
@@ -51,7 +52,7 @@ error_reporting(0);
             <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">แก้ไข user</h3></div>
+                  <div class="card-header"><h3 class="card-title"></h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
 
