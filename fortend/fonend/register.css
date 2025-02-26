@@ -4,13 +4,13 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #3c8dde;
-    text-align: center; /* จัดให้อยู่กึ่งกลาง */
+    text-align: center; 
 }
 
 head {
     font-weight: bold;
     display: block;
-    text-align: center; /* จัดข้อความของ Label ให้อยู่กลาง */
+    text-align: center; 
 }
 
 .card-body {
@@ -23,13 +23,13 @@ head {
 
 .form-group {
     margin-bottom: 15px;
-    text-align: center; /* จัด Label ให้อยู่กลาง */
+    text-align: center; 
 }
 
 label {
     font-weight: bold;
     display: block;
-    text-align: center; /* จัดข้อความของ Label ให้อยู่กลาง */
+    text-align: center; 
 }
 
 input {
@@ -37,7 +37,7 @@ input {
     border: 1px solid #ced4da;
     padding: 8px;
     width: 100%;
-    text-align: center; /* จัดข้อความที่พิมพ์ในช่อง Input ให้อยู่กลาง */
+    text-align: center; 
 }
 
 button {
