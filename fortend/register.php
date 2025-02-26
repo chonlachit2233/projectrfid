@@ -60,11 +60,11 @@ error_reporting(0);
                   <form action="add-user_api.php" method="post" >
                 <div class="form-group">
                 <label for="first_name">ชื่อ:</label>
-                <input type="text" class="form-control" id="first_name" placeholder="Enter first_name" name="first_name" required value="<?php echo $row->first_name; ?>">
+                <input type="text" class="form-control" id="first_name" placeholder="กรุณากรอกชื่อ" name="first_name" required value="<?php echo $row->first_name; ?>">
                 </div>
                 <div class="form-group">
                 <label for="last_name">นามสกุล:</label>
-                <input type="text" class="form-control" id="last_name" placeholder="Enter last_name" name="last_name" required value="<?php echo $row->last_name; ?>">
+                <input type="text" class="form-control" id="last_name" placeholder="กรุณากรอกนามสกุล" name="last_name" required value="<?php echo $row->last_name; ?>">
                 </div>
                 <div class="form-group">
                 <label for="gender">เพศ:</label>
@@ -72,23 +72,23 @@ error_reporting(0);
                 </div>
                 <div class="form-group">
                 <label for="organization">หน่วยงาน:</label>
-                <input type="text"  class="form-control" id="organization" placeholder="Enter organization" name="organization" required value="<?php echo $row->organization; ?>">
+                <input type="text"  class="form-control" id="organization" placeholder="กรุณากรอกหน่วยงาน" name="organization" required value="<?php echo $row->organization; ?>">
                 </div>
                 <div class="form-group">
                 <label for="school">โรงเรียน:</label>
-                <input type="text" class="form-control" id="school" placeholder="Enter school" name="school" required value="<?php echo $row->school; ?>">
+                <input type="text" class="form-control" id="school" placeholder="กรุณากรอกชื่อโรงเรียน" name="school" required value="<?php echo $row->school; ?>">
                 </div>
                 <div class="form-group">
                 <label for="grade">ระดับชั้น:</label>
-                <input type="text" class="form-control" id="grade" placeholder="Enter grade" name="grade" required value="<?php echo $row->grade; ?>">
+                <input type="text" class="form-control" id="grade" placeholder="กรุณากรอกระดับชั้น" name="grade" required value="<?php echo $row->grade; ?>">
                 </div>
                 <div class="form-group">
                 <label for="tag_rfid">รหัส Tag_rfid:</label>
-                <input type="text" class="form-control" id="tag_rfid" placeholder="Enter tag_rfid" name="tag_rfid" required value="<?php echo $row->tag_rfid; ?>">
+                <input type="text" class="form-control" id="tag_rfid" placeholder="กรุณากรอก รหัส RFID" name="tag_rfid" required value="<?php echo $row->tag_rfid; ?>">
                 </div>
                 <div class="form-group">
                 <label for="activities">กิจกรรม:</label>
-                <input type="text" class="form-control" id="activities" placeholder="Enter activities" name="activities" required value="<?php echo $row->activities; ?>">
+                <input type="text" class="form-control" id="activities" placeholder="กรุณากรอกกิจกรรม" name="activities" required value="<?php echo $row->activities; ?>">
                 </div>
         
         <button type="submit" class="btn btn-success" name="save" id="save">Save</button>
