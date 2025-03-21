@@ -11,7 +11,7 @@ error_reporting(0);
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>จัดการผู้ใช้งาน</title>
-    <link rel="stylesheet" href="fonend/register.css">
+    <link rel="stylesheet" href="fonend/register1.css">
     <!--begin::Primary Meta Tags-->
     
  

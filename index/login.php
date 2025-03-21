@@ -13,7 +13,7 @@ error_reporting(0);
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="styleslogin.css">
+  <link rel="stylesheet" href="styleslogin1.css">
 </head>
 <body>
 
@@ -34,9 +34,12 @@ error_reporting(0);
         </div>
 </br>
 
+<div class="form-text text-right mb-3">ถ้าท่านยังไม่ได้สมัครสมาชิก
+          <a href="signup.php" class="text-primary">ลงทะเบียนที่นี่</a>
+        </div>
+
         <button type="submit" class="btn btn-primary btn-block" name="login" id="login">Login</button>
-        <div class="form-text text-center mb-3">
-          <a href="signup.php" class="text-primary">ติดต่อ</a>
+       
         </div>
 
       </form>

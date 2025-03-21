@@ -33,7 +33,7 @@ if(isset($_POST['login'])){
                             title: "เข้าสู่ระบบสำเร็จ",
                             type: "success"
                         }, function() {
-                            window.location = "' . ($_SESSION['admin_type'] == 0 ? 'edit-admin.php' : 'welcome.php') . '";
+                            window.location = "' . ($_SESSION['admin_type'] == 0 ? 'editdashbord.php' : 'index.php') . '";
                         });
                     }, 1000);
                 </script>';

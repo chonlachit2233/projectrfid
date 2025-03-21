@@ -31,7 +31,7 @@
               data-accordion="false"
             >
               <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+                <a href="editdashbord.php" class="nav-link active">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
                     Dashboard
@@ -44,7 +44,7 @@
                 </li>
              
              <li class="nav-item">
-               <a href="edit-admin.php" class="nav-link active">
+               <a href="edit-admin.php" class="nav-link ">
                <i class='bx bxs-contact'></i>
                  <p>จัดการAdmin</p>
                </a>
