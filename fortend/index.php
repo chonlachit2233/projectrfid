@@ -24,7 +24,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
-   var map = L.map('map').setView([18.81005087, 100.78937792], 13); // ตำแหน่งเริ่มต้น
+   var map = L.map('map').setView([18.81005087, 100.78937792], 16); // ตำแหน่งเริ่มต้น
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 fetch("../include/location.php")
