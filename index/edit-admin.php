@@ -144,7 +144,7 @@ error_reporting(0);
                                 foreach($results as $row) {
                         ?>
                                     <tr class="align-middle">
-                                    <td><?php echo $row->admin_id;?></td>
+                                    <td><?php echo $cnc; ?></td>
                                     <td><?php echo $row->full_name;?></td>
                                     <td><?php echo $row->username;?></td>
                                     <td><?php echo $row->email;?></td>
@@ -156,7 +156,7 @@ error_reporting(0);
                                     <a href="delete-admin.php?admin_id=<?php echo $row->admin_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');"><i class='bx bx-trash bx-tada' ></i></a>
                                   </td>
                                     </tr>
-<?php                               $cnt=$cnt+1;
+<?php                               $cnc++;
                                }  
                             }    
                         ?>

@@ -139,7 +139,7 @@ error_reporting(0);
                                 foreach($results as $row) {
                         ?>
                                     <tr class="align-middle">
-                                    <td><?php echo $row->id;?></td>
+                                    <td><?php echo $cnc; ?></td>
                                     <td><?php echo $row->first_name;?></td>
                                     <td><?php echo $row->last_name;?></td>
                                     <td><?php echo $row->gender;?></td>
@@ -153,7 +153,7 @@ error_reporting(0);
                                     <a href="delete-category.php?cat_id=<?php echo $row->cat_id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');"><i class='bx bx-trash bx-tada' ></i></a>
                                   </td>
                                     </tr>
-<?php                               $cnt=$cnt+1;
+<?php                               $cnc++;
                                }  
                             }    
                         ?>

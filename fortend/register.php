@@ -22,6 +22,7 @@ error_reporting(0);
     <!--begin::App Wrapper-->
     <link rel="stylesheet" href="css/register.css">
     <div class="app-wrapper">
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
       <!--begin::Header-->
       
       <!--end::Footer-->
@@ -96,7 +97,7 @@ error_reporting(0);
                 <input type="text" class="form-control" id="activities" placeholder="กรุณากรอกกิจกรรม" name="activities" required value="<?php echo $row->activities; ?>">
                 </div>
         
-        <button type="submit" class="btn btn-success" name="save" id="save">Save</button>
+        <button type="submit" class="btn btn-success" name="save" id="save">บันทึก</button>
             </form>
                   </div>
 
