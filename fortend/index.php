@@ -24,23 +24,19 @@
 
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
-    var map = L.map('map').setView([18.809574589494623, 100.78925551599184], 12);
+   var map = L.map('map').setView([18.81005087, 100.78937792], 13); // ตำแหน่งเริ่มต้น
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+fetch("../include/location.php")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(loc => {
+            L.marker([loc.latitude, loc.longitude]).addTo(map)
+              .bindPopup("มีการเช็คอินที่นี่!");
+        });
+    })
+    .catch(error => console.error("Error loading data:", error));
 
-    var rfidTags = [
-        { lat: 18.809574589494623, lng: 100.78925551599184, name: "แท็ก A" },
-        {  lat: 18.809574589494623, lng: 100.78925551599184, name: "แท็ก B" },
-        {  lat: 18.809574589494623, lng: 100.78925551599184, name: "แท็ก C" }
-    ];
-
-    rfidTags.forEach(tag => {
-        L.marker([tag.lat, tag.lng])
-            .addTo(map)
-            .bindPopup(`<b>${tag.name}</b>`);
-    });
 </script>
 
 </body>
