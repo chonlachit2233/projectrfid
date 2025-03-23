@@ -143,9 +143,14 @@ error_reporting(0);
                 <label for="mobile">Mobile:</label>
                 <input type="text" maxlength="10" pattern="[0-9]{10}" title="ตัวเลขสิบหลักเท่านั้น" class="form-control" id="mobile" placeholder="Enter Mobile" name="mobile" required value="<?php echo $row->mobile; ?>">
                 </div>
+                
                 <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required value="<?php echo $row->password; ?>">
+                </div>
+                <div>
+                <label for="mobile">admin_type:</label>
+                <input type="text" maxlength="1" pattern="{2}" title="ตัวเลข2หลักเท่านั้น" class="form-control" id="admin_type" placeholder="Enter Mobile" name="admin_type" required value="<?php echo $row->admin_type; ?>">
                 </div>
         
         <button type="submit" class="btn btn-success" name="update" id="update">Update</button>
