@@ -13,7 +13,7 @@ if ($_SESSION['admin_type']==1) {
         $mobile = $_POST['mobile'];
         $password = $_POST['password'];
 
-        $hasedpassword = hash('sha256', $password);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         //print_r($_POST);
         $sql ="UPDATE admin SET full_name=:full_name,
         username=:username,
@@ -28,7 +28,7 @@ if ($_SESSION['admin_type']==1) {
         $query->bindParam(':username',$username,PDO::PARAM_STR);
         $query->bindParam(':email',$email,PDO::PARAM_STR);
         $query->bindParam(':mobile',$mobile,PDO::PARAM_STR);
-        $query->bindParam(':hasedpassword',$hasedpassword,PDO::PARAM_STR);
+        $query->bindParam(':hasedpassword',$hashed_password,PDO::PARAM_STR);
         $query->execute();
         echo '
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
