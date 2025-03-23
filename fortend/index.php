@@ -24,16 +24,16 @@
 
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
-    var map = L.map('map').setView([13.736717, 100.523186], 12);
+    var map = L.map('map').setView([18.809574589494623, 100.78925551599184], 12);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
     var rfidTags = [
-        { lat: 13.736717, lng: 100.523186, name: "แท็ก A" },
-        { lat: 13.746717, lng: 100.533186, name: "แท็ก B" },
-        { lat: 13.756717, lng: 100.543186, name: "แท็ก C" }
+        { lat: 18.809574589494623, lng: 100.78925551599184, name: "แท็ก A" },
+        {  lat: 18.809574589494623, lng: 100.78925551599184, name: "แท็ก B" },
+        {  lat: 18.809574589494623, lng: 100.78925551599184, name: "แท็ก C" }
     ];
 
     rfidTags.forEach(tag => {
