@@ -9,11 +9,6 @@
 <body>
   <div class="container">
     <aside class="sidebar">
-      <div class="profile">
-        <div class="avatar"></div>
-        <h2>JOHN DON</h2>
-        <p>johndon@company.com</p>
-      </div>
       <nav>
         <ul>
         <li class="nav-item">
