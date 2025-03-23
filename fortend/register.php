@@ -87,10 +87,10 @@ error_reporting(0);
                 <label for="grade">ระดับชั้น:</label>
                 <input type="text" class="form-control" id="grade" placeholder="กรุณากรอกระดับชั้น" name="grade" required value="<?php echo $row->grade; ?>">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                 <label for="tag_rfid">รหัส Tag_rfid:</label>
                 <input type="text" class="form-control" id="tag_rfid" placeholder="กรุณากรอก รหัส RFID" name="tag_rfid" required value="<?php echo $row->tag_rfid; ?>">
-                </div>
+                </div> -->
                 <div class="form-group">
                 <label for="activities">กิจกรรม:</label>
                 <input type="text" class="form-control" id="activities" placeholder="กรุณากรอกกิจกรรม" name="activities" required value="<?php echo $row->activities; ?>">
