@@ -43,7 +43,7 @@
                 <ul class="nav nav-treeview">
                 </li>
              
-             <li class="nav-item">
+             <li class="nav-item"> 
                <a href="edit-admin.php" class="nav-link ">
                <i class='bx bxs-contact'></i>
                  <p>จัดการAdmin</p>
