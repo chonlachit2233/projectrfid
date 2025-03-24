@@ -1,24 +1,27 @@
+/* Resetting some default styles */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background: linear-gradient(135deg, #3c8dde, #d2a679); /* ไล่ระดับจากฟ้าไปน้ำตาล */
-    text-align: center; 
+    text-align: center;
+    margin: 0; /* ลบ margin ของ body */
 }
 
 .card-body {
-    width: 75%;
+    width: 100%;
+    max-width: 500px; /* ปรับความกว้างสูงสุดของ card-body */
     background: white;
-    padding: 40px;
+    padding: 30px; /* ปรับ padding เพื่อให้ดูดีขึ้น */
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Shadow เพิ่มมิติ */
     border: 3px solid #d2a679; /* ขอบน้ำตาล */
 }
 
 .form-group {
-    margin-bottom: 15px;
-    text-align: center; 
+    margin-bottom: 20px; /* เพิ่มระยะห่างให้ดูไม่เบียดกัน */
+    text-align: center;
 }
 
 label {
@@ -30,9 +33,9 @@ label {
 input {
     border-radius: 5px;
     border: 2px solid #d2a679; /* ขอบน้ำตาล */
-    padding: 10px;
+    padding: 12px; /* เพิ่ม padding ให้ฟิลด์กว้างขึ้น */
     width: 100%;
-    text-align: center; 
+    text-align: center;
     font-size: 14px;
     transition: 0.3s;
 }
@@ -44,8 +47,8 @@ input:focus {
 
 button {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 14px; /* เพิ่ม padding ให้ปุ่มใหญ่ขึ้น */
+    font-size: 18px; /* เพิ่มขนาดตัวอักษรให้ใหญ่ขึ้น */
     border-radius: 5px;
     border: none;
     background-color: #d2a679; /* น้ำตาลอ่อน */
@@ -59,13 +62,15 @@ button:hover {
     background-color: #b07d51; /* น้ำตาลเข้มขึ้นเมื่อ Hover */
 }
 
-.input-group-text {
-    background-color: #3c8dde; /* เปลี่ยนเป็นสีฟ้า */
-    color: white; 
-    border-radius: 5px 0 0 5px;
+input, select {
+    width: 100%; /* ให้ input เต็มพื้นที่ */
 }
 
-.custom-select {
-    border-radius: 0 5px 5px 0;
-    border: 2px solid #d2a679;
+@media (max-width: 576px) {
+    .card-body {
+        padding: 20px;
+    }
+    input, select {
+        padding: 10px;
+    }
 }

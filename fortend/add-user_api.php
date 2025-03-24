@@ -10,12 +10,11 @@ $gender = $_POST['gender'];
 $school = $_POST['school'];
 $organization = $_POST['organization']; // ✅ แก้ชื่อให้ถูก
 $grade = $_POST['grade']; 
-$tag_rfid = $_POST['tag_rfid'];
 $activities = $_POST['activities'];
 
 // เตรียมคำสั่ง SQL ที่ถูกต้อง
-$query = $pdo->prepare("INSERT INTO users (first_name, last_name, gender, school, organization, grade, tag_rfid, activities) 
-                        VALUES (:first_name, :last_name, :gender, :school, :organization, :grade, :tag_rfid, :activities)");
+$query = $pdo->prepare("INSERT INTO users (first_name, last_name, gender, school, organization, grade, activities) 
+                        VALUES (:first_name, :last_name, :gender, :school, :organization, :grade, :activities)");
 
 // ผูกค่ากับพารามิเตอร์
 $query->bindParam(':first_name', $first_name, PDO::PARAM_STR); // ✅ แก้ชื่อตัวแปร
@@ -24,7 +23,6 @@ $query->bindParam(':gender', $gender, PDO::PARAM_STR);
 $query->bindParam(':school', $school, PDO::PARAM_STR);
 $query->bindParam(':organization', $organization, PDO::PARAM_STR);
 $query->bindParam(':grade', $grade, PDO::PARAM_STR);
-$query->bindParam(':tag_rfid', $tag_rfid, PDO::PARAM_STR);
 $query->bindParam(':activities', $activities, PDO::PARAM_STR);
 
 // ✅ ตรวจสอบผลลัพธ์หลัง execute()

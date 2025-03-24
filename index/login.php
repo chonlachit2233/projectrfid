@@ -14,13 +14,14 @@ error_reporting(0);
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="styleslogin1.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
 <div class="login-container d-flex align-items-center justify-content-center">
   <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
     <div class="card-body">
-      <h2 class="text-center mb-4">Login</h2>
+      <h2 class="text-center mb-4"><i class='bx bxs-user-circle'style="font-size: 100px;" ></i></h2>
       <form action="checklogin.php" method="POST">
 
         <div class="form-group">
@@ -32,11 +33,12 @@ error_reporting(0);
           <label for="password">Password:</label>
           <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
         </div>
-</br>
 
-<div class="form-text text-right mb-3">ถ้าท่านยังไม่ได้สมัครสมาชิก
-          <a href="signup.php" class="text-primary">ลงทะเบียนที่นี่</a>
-        </div>
+        <div class="form-text text-center mb-3">เข้าสู่ระบบสำหรับ
+          <a href="login.php" class="text-primary">Adminเท่านั้น</a>
+          
+
+
 
         <button type="submit" class="btn btn-primary btn-block" name="login" id="login">Login</button>
        

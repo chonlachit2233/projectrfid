@@ -1,0 +1,62 @@
+body {
+    background: linear-gradient(135deg, #007acc, #0099cc, #a67c52);
+    font-family: 'Roboto', sans-serif;
+    color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+h2 {
+    color: #007acc;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn-primary {
+    background: linear-gradient(145deg, #007acc, #005f99);
+    border: none;
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 122, 204, 0.4);
+}
+.btn-success {
+    background: linear-gradient(145deg, #a67c52, #8b5e3c);
+    border: none;
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+}
+.btn-success:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(166, 124, 82, 0.4);
+}
+
+#myTable {
+    margin-left: auto;
+    margin-right: 0;
+    width: auto; /* ปรับให้ขนาดของตารางพอดีกับเนื้อหา */
+}
+@media (max-width: 768px) {
+    #myTable {
+        font-size: 12px; /* ลดขนาดตัวอักษร */
+    }
+    #myTable th, #myTable td {
+        padding: 5px; /* ลดช่องว่างในเซลล์ */
+    }
+}
+
+
