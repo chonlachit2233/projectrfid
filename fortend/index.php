@@ -33,7 +33,7 @@
        .then(data => {
            data.forEach(loc => {
                L.marker([loc.latitude, loc.longitude]).addTo(map)
-                 .bindPopup(`<h6>เช็คอิน: ${loc.total_users}คน</h6>`);  // แสดงชื่อผู้ลงทะเบียนแทนตัวเลข
+                 .bindPopup(`<h6>เช็คอิน: ${loc.total_users}คน  </h6>`);  // แสดงชื่อผู้ลงทะเบียนแทนตัวเลข
            });
        })
        .catch(error => console.error("Error loading data:", error));

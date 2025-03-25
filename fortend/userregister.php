@@ -37,12 +37,12 @@ var customIcon = L.divIcon({
     popupAnchor: [0, -32]  // ตำแหน่งป๊อปอัพ
 });
 
-fetch("../include/location.php")
+fetch("../include/locationapi.php")
     .then(response => response.json())
     .then(data => {
         data.forEach(loc => {
             L.marker([loc.latitude, loc.longitude], { icon: customIcon }).addTo(map)
-                .bindPopup(`<h6>ลงทะเบียน: ${loc.total_users} คน</h6>`);  // แสดงชื่อผู้ลงทะเบียนแทนตัวเลข
+                .bindPopup(`<h6>${loc.mal_name}</h6><h6>ลงทะเบียน: ${loc.total_users} คน</h6>`);  // แสดงชื่อผู้ลงทะเบียนแทนตัวเลข
         });
     })
     .catch(error => console.error("Error loading data:", error));

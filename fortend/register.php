@@ -62,11 +62,20 @@ error_reporting(0);
                 <label for="grade">ระดับชั้น:</label>
                 <input type="text" class="form-control" id="grade" placeholder="กรุณากรอกระดับชั้น" name="grade" required value="<?php echo $row->grade; ?>">
                 </div>
-                
                 <div class="form-group">
-                <label for="activities">กิจกรรม:</label>
-                <input type="text" class="form-control" id="activities" placeholder="กรุณากรอกกิจกรรม" name="activities" required value="<?php echo $row->activities; ?>">
-                </div>
+                          <label for="activities">กิจกรรม:</label>
+                          <select class="form-control" id="activities" name="activities" required>
+                            <?php
+                              $activites = "SELECT * FROM manageactivity";
+                              $activites = $pdo->prepare($activites);
+                              $activites->execute();
+                              $categories = $activites->fetchAll(PDO::FETCH_OBJ);
+                              foreach ($categories as $row) {
+                                  echo "<option value='" . $row->ma_name. "'" . ($row->ma_name == $row->ma_name ? ' selected' : '') . ">" . $row->ma_name . "</option>";
+                              }
+                            ?>
+                          </select>
+                            </div>
         
         <button type="submit" class="btn btn-success" name="save" id="save">บันทึก</button>
             </form>

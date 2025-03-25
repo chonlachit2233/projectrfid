@@ -132,11 +132,11 @@ if(isset($_GET['did'])){
                     <tbody>
                     <?php
                         //เชื่อมต่อกับ database
-                            $ret="select * from manageactivity";
-                            $query = $pdo ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnc = 1;
+                        $ret="SELECT p.*, c.mal_name FROM manageactivity p JOIN managesites c ON p.mal_id = c.mal_id";
+                        $query = $pdo->prepare($ret);
+                        $query->execute();
+                        $results = $query->fetchAll(PDO::FETCH_OBJ);
+                        $cnc=1;
                         if($query->rowCount() > 0){
                           foreach($results as $row){ ?>
                             <tr>
