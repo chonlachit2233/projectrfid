@@ -27,8 +27,8 @@ error_reporting(0);
     <h2 class="mb-4 text-center">ระบบลงทะเบียนกิจกรรม RFID</h2>
 
     <div class="d-flex justify-content-center gap-3 mb-4">
-        <a href="index.php" class="btn btn-success">แผนที่กิจกรรม</a>
-        <a href="#" class="btn btn-success">แสดงผู้เข้าร่วมกิจกรรม</a>
+        <a href="index.php" class="btn btn-success">หน้าหลัก</a>
+        <a href="userregister.php" class="btn btn-success">แผนที่แสดงผู้ลงทะเบียน</a>
         <a href="../index/login.php" class="btn btn-primary"><i class='bx bxs-user-voice' style="font-size: 32px;"></i></a>
     </div>
 

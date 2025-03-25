@@ -1,16 +1,25 @@
 <?php
+session_start();
 include("../include/db.php");
 error_reporting(0);
+
+if(isset($_GET['did'])){
+  $did = $_GET['did'];
+  $sql = "DELETE FROM manageactivity WHERE ma_id=:did";
+  $query = $pdo->prepare($sql);
+  $query->bindParam(':did',$did,PDO::PARAM_STR);
+  $query->execute();
+  echo "<script>toastr.success('ลบข้อมูลเรียบร้อย');</script>";
+  echo "<script>window.location.href='manage_activity.php'</script>";
+}
 ?>
-
-
 
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>จัดการผู้ใช้งาน</title>
+    <title>Dashbord</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -50,6 +59,7 @@ error_reporting(0);
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../admin/css/adminlte.css" />
+    <link href="../admin/css/sb-admin-2.min.css" rel="stylesheet">
     <!--end::Required Plugin(AdminLTE)-->
     <!-- apexcharts -->
     <link
@@ -65,7 +75,10 @@ error_reporting(0);
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
-    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -77,23 +90,76 @@ error_reporting(0);
       <!--end::Header-->
       <!--begin::Sidebar-->
      <?php include("../admin/include/sidebar.php");?>
-     
       <!--end::Sidebar-->
       <?php include("../admin/include/footer.php");?>
       <!--end::Footer-->
       <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">เเสดงตารางจัดการผู้ใช้งาน</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+      <div class="app-content-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6"><h3 class="mb-0">จัดการกิจกรรม</h3></div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-end">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-4">
+                <div class="card-header"><h3 class="card-title">จัดการกิจกรรม</h3></div>
+                <div class="card-body">
+                  <a href="add_activity.php?id=<?php echo $row->id ?>" class="btn btn-info mb-3">เพิ่มกิจกรรม</a>
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>ชื่อกิจกรรม</th>
+                        <th>สถานที่กิจกรรม</th>
+                        <th>วันที่</th>
+                        <th>รายละเอียด</th>
+                        <th>รูปภาพ</th>
+                        <th>จัดการ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        //เชื่อมต่อกับ database
+                            $ret="select * from manageactivity";
+                            $query = $pdo ->prepare($ret);
+                            $query -> execute();
+                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
+                            $cnc = 1;
+                        if($query->rowCount() > 0){
+                          foreach($results as $row){ ?>
+                            <tr>
+                            <tr class="align-middle">
+                              <td><?php echo $cnc;?></td>
+                              <td><?php echo $row->ma_name;?></td>
+                              <td><?php echo $row->mal_name;?></td>
+                              <td><?php echo $row->ma_date;?></td>
+                              <td><?php echo $row->ma_details;?></td>
+                              <td><img src="<?php echo $row->ma_img;?>" alt="Image" width="50"></td>
+                              <td>
+                                <a href="edit_activity.php?id=<?php echo $row->ma_id ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i> แก้ไข</a>
+                                <a href="manage_activity.php?did=<?php echo $row->ma_id ?>" class="btn btn-danger" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่ไหม?')"><i class="bi bi-trash"></i> ลบ</a>
+                              </td>
+                            </tr>
+                          <?php $cnc++; 
+                          }  
+                        }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
                 </ol>
               </div>
             </div>
@@ -108,66 +174,19 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-            <div class="col-md-12">
-            <div class="card mb-4">
-              <div class="card-header"><h3 class="card-title">รายชื่อ ผู้ใช้งาน</h3></div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                  <a href="add_user.php" class="btn btn-info"><i class='bx bxs-user-plus bx-tada' style='color:#171717' ></i></a>
-                  
-                  <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">id</th>
-                          <th>ชื่อ</th>
-                          <th>นามสกุล</th>
-                          <th>เพศ</th>
-                          <th>โรงเรียน</th>
-                          <th>หน่วยงาน</th>
-                          <th>ระดับชั้น</th>
-                          <th>หมายเลข_Tag</th>
-                          <th>กิจกรรม</th>
-                          </th>
-                        
-
-                          <th style="">แก้ไข/ลบ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        //เชื่อมต่อกับ database
-                            $ret="select * from users";
-                            $query = $pdo ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnc = 1;
- 
-                            if($query->rowCount() >0) {
-                                foreach($results as $row) {
-                        ?>
-                                    <tr class="align-middle">
-                                    <td><?php echo $cnc; ?></td>
-                                    <td><?php echo $row->first_name;?></td>
-                                    <td><?php echo $row->last_name;?></td>
-                                    <td><?php echo $row->gender;?></td>
-                                    <td><?php echo $row->school;?></td>
-                                    <td><?php echo $row->organization;?></td>
-                                    <td><?php echo $row->grade;?></td>
-                                    <td><?php echo $row->tag_rfid;?></td>
-                                    <td><?php echo $row->activities;?></td>
-                                    <td>
-                                    <a href="user_edit.php?id=<?php echo $row->id; ?>" class="btn btn-warning"> <i class='bx bxs-edit bx-tada' style='color:#171717' ></i></a> 
-                                    <a href="delete-user.php?id=<?php echo $row->id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');"><i class='bx bx-trash bx-tada' ></i></a>
-                                  </td>
-                                    </tr>
-<?php                               $cnc++;
-                               }  
-                            }    
-                        ?>
- 
-                          </tr>
-                      </tbody>
-                    </table>
+              <!--begin::Col-->
+              <div class="col-lg-3 col-6">
+                <!--begin::Small Box Widget 1-->
+            
+                <!--end::Small Box Widget 1-->
+              </div>
+              <!--end::Col-->
+              
+              <!--end::Col-->
+              
+              <!--end::Col-->
+              
+              <!--end::Col-->
             </div>
             <!--end::Row-->
             <!--begin::Row-->
@@ -182,8 +201,13 @@ error_reporting(0);
       </main>
       <!--end::App Main-->
       <!--begin::Footer-->
+      <script src="../admin/js/Chart.min.js"></script>
+      <script src="../admin/js/chart-area2-demo.js"></script>
+      <script src="../admin/js/chart-pie-demo.js"></script>
+
    
     </div>
+  
     <!--end::App Wrapper-->
     <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
@@ -433,7 +457,11 @@ error_reporting(0);
       const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
       sparkline3.render();
     </script>
+
+    
     <!--end::Script-->
+    
+   
   </body>
   <!--end::Body-->
 </html>

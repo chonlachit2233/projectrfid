@@ -56,13 +56,13 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="edit-plect.php" class="nav-link ">
+                    <a href="manage_sites.php" class="nav-link ">
                     <i class='bx bxs-building-house' ></i>
                       <p>จัดการสถานที่กิจกรรม</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="edit-activity.php" class="nav-link">
+                    <a href="manage_activity.php" class="nav-link">
                     <i class='bx bxs-landscape'></i>
                       <p>จัดการกิจกรรม</p>
                     </a>

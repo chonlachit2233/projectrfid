@@ -1,8 +1,18 @@
 <?php
+session_start();
 include("../include/db.php");
 error_reporting(0);
-?>
 
+if(isset($_GET['did'])){
+  $did = $_GET['did'];
+  $sql = "DELETE FROM managesites WHERE mal_id=:did";
+  $query = $pdo->prepare($sql);
+  $query->bindParam(':did', $did, PDO::PARAM_STR);
+  $query->execute();
+  echo "<script>toastr.success('ลบข้อมูลเรียบร้อย');</script>";
+  echo "<script>window.location.href='manage_sites.php'</script>";
+}
+?>
 
 
 <!doctype html>
@@ -10,7 +20,7 @@ error_reporting(0);
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>จัดการผู้ใช้งาน</title>
+    <title>จัดการสถานที่กิจกรรม</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -65,7 +75,6 @@ error_reporting(0);
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
-    
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -77,11 +86,10 @@ error_reporting(0);
       <!--end::Header-->
       <!--begin::Sidebar-->
      <?php include("../admin/include/sidebar.php");?>
-     
       <!--end::Sidebar-->
+      <!--begin::App Main-->
       <?php include("../admin/include/footer.php");?>
       <!--end::Footer-->
-      <!--begin::App Main-->
       <main class="app-main">
         <!--begin::App Content Header-->
         <div class="app-content-header">
@@ -89,7 +97,7 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">เเสดงตารางจัดการผู้ใช้งาน</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">ตารางจัดการสถานที่กิจกรรม</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -101,6 +109,51 @@ error_reporting(0);
           </div>
           <!--end::Container-->
         </div>
+        <div class="app-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-4">
+                <div class="card-header"><h3 class="card-title">จัดการสถานที่กิจกรรม</h3></div>
+                <div class="card-body">
+                  <a href="add_sites.php" class="btn btn-info mb-3">เพิ่มสถานที่กิจกรรม</a>
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>ชื่อสถานที่กิจกรรม</th>
+                        <th>จัดการ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                        $ret = "SELECT * FROM managesites";
+                        $query =$pdo->prepare($ret);
+                        $query->execute();
+                        $results = $query->fetchAll(PDO::FETCH_OBJ);
+                        $cnt = 1;
+
+                        if($query->rowCount() > 0){
+                          foreach($results as $row){ ?>
+                            <tr>
+                              <td><?php echo $cnt;?></td>
+                              <td><?php echo $row->mal_name;?></td>
+                              <td>
+                                <a href="edit_sites.php?id=<?php echo $row->mal_id ?>" class="btn btn-warning">
+                                  <i class="bi bi-pencil-square"></i> แก้ไข
+                                </a>
+                                <a href="manage_sites.php?did=<?php echo $row->mal_id ?>" class="btn btn-danger" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่ไหม?')">
+                                  <i class="bi bi-trash"></i> ลบ
+                                </a>
+                              </td>
+                            </tr>
+                          <?php 
+                            $cnt++;
+                          }  
+                        }
+                      ?>
+                    </tbody>
+                  </table>
         <!--end::App Content Header-->
         <!--begin::App Content-->
         <div class="app-content">
@@ -108,74 +161,44 @@ error_reporting(0);
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-            <div class="col-md-12">
-            <div class="card mb-4">
-              <div class="card-header"><h3 class="card-title">รายชื่อ ผู้ใช้งาน</h3></div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                  <a href="add_user.php" class="btn btn-info"><i class='bx bxs-user-plus bx-tada' style='color:#171717' ></i></a>
+              <!--begin::Col-->
+              <div class="col-lg-3 col-6">
+                <!--begin::Small Box Widget 1-->
+                
+                 
+              
                   
-                  <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">id</th>
-                          <th>ชื่อ</th>
-                          <th>นามสกุล</th>
-                          <th>เพศ</th>
-                          <th>โรงเรียน</th>
-                          <th>หน่วยงาน</th>
-                          <th>ระดับชั้น</th>
-                          <th>หมายเลข_Tag</th>
-                          <th>กิจกรรม</th>
-                          </th>
-                        
-
-                          <th style="">แก้ไข/ลบ</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        //เชื่อมต่อกับ database
-                            $ret="select * from users";
-                            $query = $pdo ->prepare($ret);
-                            $query -> execute();
-                            $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                            $cnc = 1;
- 
-                            if($query->rowCount() >0) {
-                                foreach($results as $row) {
-                        ?>
-                                    <tr class="align-middle">
-                                    <td><?php echo $cnc; ?></td>
-                                    <td><?php echo $row->first_name;?></td>
-                                    <td><?php echo $row->last_name;?></td>
-                                    <td><?php echo $row->gender;?></td>
-                                    <td><?php echo $row->school;?></td>
-                                    <td><?php echo $row->organization;?></td>
-                                    <td><?php echo $row->grade;?></td>
-                                    <td><?php echo $row->tag_rfid;?></td>
-                                    <td><?php echo $row->activities;?></td>
-                                    <td>
-                                    <a href="user_edit.php?id=<?php echo $row->id; ?>" class="btn btn-warning"> <i class='bx bxs-edit bx-tada' style='color:#171717' ></i></a> 
-                                    <a href="delete-user.php?id=<?php echo $row->id;?>&act=delete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลหรอ!!');"><i class='bx bx-trash bx-tada' ></i></a>
-                                  </td>
-                                    </tr>
-<?php                               $cnc++;
-                               }  
-                            }    
-                        ?>
- 
-                          </tr>
-                      </tbody>
-                    </table>
+             
+                    <path
+                      clip-rule="evenodd"
+                      fill-rule="evenodd"
+                      d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z"
+                    ></path>
+                    <path
+                      clip-rule="evenodd"
+                      fill-rule="evenodd"
+                      d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z"
+                    ></path>
+                  </svg>
+                  <a
+                    href="#"
+                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+                  >
+                    More info <i class="bi bi-link-45deg"></i>
+                  </a>
+                </div>
+                <!--end::Small Box Widget 4-->
+              </div>
+              <!--end::Col-->
             </div>
             <!--end::Row-->
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
              
-            
-          </div>
+              <!-- Start col -->
+               <!--เเผนที่-->
+           
           <!--end::Container-->
         </div>
         <!--end::App Content-->
