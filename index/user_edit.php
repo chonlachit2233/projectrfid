@@ -136,8 +136,12 @@ error_reporting(0);
                 <input type="text" class="form-control" id="last_name" placeholder="Enter last_name" name="last_name" required value="<?php echo $row->last_name; ?>">
                 </div>
                 <div class="form-group">
-                <label for="gender">เพศ:</label>
-                <input type="text"  class="form-control" id="gender" placeholder="Enter gender" name="gender" required value="<?php echo $row->gender; ?>">
+                 <label for="gender">เพศ:</label>
+                 <select class="form-control" id="gender" name="gender" required>
+                  <option value="">-- เลือกเพศ --</option>
+                 <option value="ชาย" <?php if ($row->gender == "ชาย") echo "selected"; ?>>ชาย</option>
+                  <option value="หญิง" <?php if ($row->gender == "หญิง") echo "selected"; ?>>หญิง</option>
+                </select>
                 </div>
                 <div class="form-group">
                 <label for="organization">หน่วยงาน:</label>
@@ -155,10 +159,18 @@ error_reporting(0);
                 <label for="tag_rfid">รหัส Tag_rfid:</label>
                 <input type="text" class="form-control" id="tag_rfid" placeholder="Enter tag_rfid" name="tag_rfid" required value="<?php echo $row->tag_rfid; ?>">
                 </div>
-                <div class="form-group">
                 <label for="activities">กิจกรรม:</label>
-                <input type="text" class="form-control" id="activities" placeholder="Enter activities" name="activities" required value="<?php echo $row->activities; ?>">
-                </div>
+                          <select class="form-control" id="activities" name="activities" required>
+                            <?php
+                              $activites = "SELECT * FROM manageactivity";
+                              $activites = $pdo->prepare($activites);
+                              $activites->execute();
+                              $categories = $activites->fetchAll(PDO::FETCH_OBJ);
+                              foreach ($categories as $row) {
+                                  echo "<option value='" . $row->ma_name. "'" . ($row->ma_name == $row->ma_name ? ' selected' : '') . ">" . $row->ma_name . "</option>";
+                              }
+                            ?>
+                          </select>
         
         <button type="submit" class="btn btn-success" name="update" id="update">Update</button>
             </form>

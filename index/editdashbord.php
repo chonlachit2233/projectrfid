@@ -2,6 +2,11 @@
 include("../include/db.php");
 error_reporting(0);
 
+$sql = "SELECT ma_name FROM manageactivity"; 
+$query = $pdo->prepare($sql);
+$query->execute();
+$activities = $query->fetchAll();
+
 
 ?>
 
@@ -125,69 +130,42 @@ error_reporting(0);
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <h6>จำนวนผู้เข้าร่วมกิจกรรม....</h6></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                <?php
+                        $sql = "SELECT ma_name FROM manageactivity"; 
+                        $query = $pdo->prepare($sql);
+                        $query->execute();
+                        $activities = $query->fetchAll();
+
+                        // กำหนดสีกรอบและสีข้อความ
+                        $borders = ['border-left-primary', 'border-left-success', 'border-left-info', 'border-left-warning', 'border-left-danger'];
+                        $texts = ['text-primary', 'text-success', 'text-info', 'text-warning', 'text-danger'];
+                        ?>
+
+                        <?php foreach ($activities as $activity) { ?>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card <?= $borders[array_rand($borders)] ?> shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold <?= $texts[array_rand($texts)] ?> text-uppercase mb-1">
+                                                    <h6>ชื่อกิจกรรม: <?=$activity['ma_name']?></h6>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
+
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><h6>จำนวนผู้เข้าร่วมกิจกรรม...</h6>
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">5</div>
-                                                </div>
-                                                <div class="col">
-                                                <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                       
                         <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <h6>จำนวนผู้เข้าร่วมกิจกรรม....</h6></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                       
                     <!-- Content Row -->
 
                     <div class="row">
@@ -252,17 +230,7 @@ error_reporting(0);
                                     <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
                                     </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -327,7 +295,7 @@ error_reporting(0);
       <!--begin::Footer-->
       <script src="../admin/js/Chart.min.js"></script>
       <script src="../admin/js/chart-area2-demo.js"></script>
-      <script src="../admin/js/chart-pie-demo.js"></script>
+      <script src="../admin/js/chart-pie2-demo.js"></script>
 
    
     </div>
