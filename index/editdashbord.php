@@ -128,44 +128,162 @@ $activities = $query->fetchAll();
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <h6>ลงทะเบียนรับรหัส Tag-rfid</h6></div>
                                                 <?php
-                        $sql = "SELECT activities, COUNT(*) AS user FROM  users ma LEFT JOIN manageactivity u ON ma_name = activities GROUP BY ma_name;
-                        ";
-
-                        $query = $pdo->prepare($sql);
-                        $query->execute();
-                        $activities = $query->fetchAll();
-
-                        // กำหนดสีกรอบและสีข้อความ
-                        $borders = ['border-left-primary', 'border-left-success', 'border-left-info', 'border-left-warning', 'border-left-danger'];
-                        $texts = ['text-primary', 'text-success', 'text-info', 'text-warning', 'text-danger'];
-                        ?>
-
-                        <?php foreach ($activities as $activity) { ?>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card <?= $borders[array_rand($borders)] ?> shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold <?= $texts[array_rand($texts)] ?> text-uppercase mb-1">
-                                                    <h6>ชื่อกิจกรรม: <?=$activity['activities']?></h6>
-                                                </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    จำนวนผู้ลงทะเบียน: <?=$activity['user']?>
-                                                </div>
+                                               $sql = "SELECT COUNT(*) as tag_count FROM users WHERE tag_rfid IS NOT NULL AND tag_rfid != ''";
+                                               $qurey = $pdo->prepare($sql);
+                                               $qurey->execute();
+                                               $fetch = $qurey->fetch();
+                                               
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                              <?=
+                                              $fetch['tag_count']
+                                              ?>
                                             </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
-                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <?php 
-                      } 
-                      ?>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <h6>ยังไม่ได้รับรหัส tag-rfid</h6></div>
+                                                <?php
+                                               $sql = "SELECT COUNT(*) as tag_count FROM users WHERE tag_rfid IS NULL OR tag_rfid = ''";
+                                               $qurey = $pdo->prepare($sql);
+                                               $qurey->execute();
+                                               $fetch = $qurey->fetch();
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                              <?=
+                                              $fetch['tag_count']
+                                              ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Earnings (Monthly) Card Example -->
+                    
+                          
+                        <?php
+// ดึงข้อมูลกิจกรรมและจำนวนผู้ลงทะเบียนในแต่ละกิจกรรม
+$sql = "SELECT activities, COUNT(*) AS user_count
+        FROM users
+        GROUP BY activities";
+
+$query = $pdo->prepare($sql);
+$query->execute();
+$activities = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+// สุ่มสีขอบและข้อความ
+$borders = ['border-left-primary', 'border-left-success', 'border-left-info', 'border-left-warning', 'border-left-danger'];
+$texts = ['text-primary', 'text-success', 'text-info', 'text-warning', 'text-danger'];
+?>
+
+<?php foreach ($activities as $activity): ?>
+    <div class="col-12 mb-4">
+        <div class="card <?= $borders[array_rand($borders)] ?> shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold <?= $texts[array_rand($texts)] ?> text-uppercase mb-1">
+                            <h5 class="mb-1">ชื่อกิจกรรม: <?= htmlspecialchars($activity['activities']) ?></h5>
+                        </div>
+                        
+
+                        <div class="h5 mb-3 font-weight-bold text-dark d-flex justify-content-between align-items-center mb-3">
+                            จำนวนผู้ลงทะเบียน: <?= $activity['user_count'] ?>
+                            <a href="export_excel.php?activity=<?= urlencode($activity['activities']) ?>" class="btn btn-sm btn-success mb-3" target="_blank">
+        ดาวน์โหลด Excel
+    </a>
+                        </div>
+                        </div>
+                        
+                        <!-- ตารางรายชื่อผู้ลงทะเบียน -->
+                        <h6 class="mt-4 mb-2">รายชื่อผู้ลงทะเบียน:</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ชื่อ</th>
+                                        <th>นามสกุล</th>
+                                        <th>เพศ</th>
+                                        <th>โรงเรียน</th>
+                                        <th>หน่วยงาน</th>
+                                        <th>ระดับชั้น</th>
+                                        <th>Tag RFID</th>
+                                        <th>กิจกรรม</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $stmt = $pdo->prepare("SELECT * FROM users WHERE activities = :activity");
+                                    $stmt->execute(['activity' => $activity['activities']]);
+                                    $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+                                    $i = 1;
+                                    if (count($users) > 0):
+                                        foreach ($users as $user):
+                                    ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= htmlspecialchars($user->first_name) ?></td>
+                                            <td><?= htmlspecialchars($user->last_name) ?></td>
+                                            <td><?= htmlspecialchars($user->gender) ?></td>
+                                            <td><?= htmlspecialchars($user->school) ?></td>
+                                            <td><?= htmlspecialchars($user->organization) ?></td>
+                                            <td><?= htmlspecialchars($user->grade) ?></td>
+                                            <td><?= htmlspecialchars($user->tag_rfid) ?></td>
+                                            <td><?= htmlspecialchars($user->activities) ?></td>
+                                        </tr>
+                                    <?php
+                                        endforeach;
+                                    else:
+                                        echo '<tr><td colspan="9" class="text-center text-muted">ไม่มีผู้ลงทะเบียน</td></tr>';
+                                    endif;
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ไอคอนด้านขวา -->
+                    <div class="col-auto text-center">
+                        <i class="fas fa-calendar-alt fa-3x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+                      
+                                               
 
                         <!-- Earnings (Monthly) Card Example -->
                        
@@ -214,7 +332,7 @@ $activities = $query->fetchAll();
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">กราฟสัดส่วนการเช็คอินตามจุดเช็คอิน</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">กราฟสัดส่วนกิจกรรมตามจุดเช็คอิน</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
